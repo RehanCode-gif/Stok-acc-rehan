@@ -1,126 +1,290 @@
-* {
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+*{
+    box-sizing:border-box;
+    font-family:Poppins,Arial,sans-serif;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #111827, #2563eb);
-    color: white;
-    padding: 20px;
-}
-
-.container {
-    max-width: 600px;
-    margin: auto;
-}
-
-h1 {
-    text-align: center;
-    font-size: 28px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #d1d5db;
+body{
+    margin:0;
+    min-height:100vh;
+    padding:20px;
+    background:
+    linear-gradient(135deg,#0f172a,#2563eb);
+    color:white;
 }
 
 
-.form-box {
-    background: rgba(255,255,255,0.1);
-    padding: 20px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    margin-top: 20px;
+.container{
+    max-width:650px;
+    margin:auto;
+}
+
+
+h1{
+    text-align:center;
+    font-size:32px;
+}
+
+
+.subtitle{
+    text-align:center;
+    color:#cbd5e1;
+}
+
+
+.form-box{
+    margin-top:25px;
+    padding:25px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
+
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 
 
 input,
-textarea {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border: none;
-    outline: none;
-    border-radius: 10px;
-    background: white;
-    color: black;
+textarea{
+
+    width:100%;
+    padding:14px;
+
+    margin-bottom:12px;
+
+    border:none;
+    outline:none;
+
+    border-radius:12px;
+
+    font-size:15px;
+
 }
 
 
-textarea {
-    height: 90px;
-    resize: none;
+textarea{
+    height:100px;
 }
 
 
-button {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #22c55e;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+
+button{
+
+    border:none;
+    padding:12px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-weight:bold;
+
+    transition:.2s;
+
 }
 
 
-button:hover {
-    opacity: 0.8;
+button:hover{
+    transform:scale(1.03);
 }
 
 
-.card {
-    background: rgba(255,255,255,0.12);
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 15px;
+
+.form-box button{
+
+    width:100%;
+
+    background:#22c55e;
+
 }
 
 
-.card h3 {
-    margin: 0 0 10px;
+
+.card{
+
+    margin-top:15px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
+
 }
 
 
-.info {
-    background: rgba(0,0,0,0.2);
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 10px;
+.card h3{
+
+    color:#60a5fa;
+
+    margin-top:0;
+
 }
 
 
-.action {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
+
+.card p{
+
+    color:#e2e8f0;
+
 }
 
 
-.action button {
-    flex: 1;
-    font-size: 14px;
+
+.action{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:15px;
+
 }
 
 
-.detail {
-    background: #3b82f6;
+.action button{
+
+    flex:1;
+
 }
 
 
-.edit {
-    background: #f59e0b;
+.detail{
+    background:#2563eb;
 }
 
 
-.delete {
-    background: #ef4444;
+.edit{
+    background:#f59e0b;
 }
 
 
-.copy {
-    background: #8b5cf6;
+.delete{
+    background:#ef4444;
+}
+
+
+.copy{
+    background:#8b5cf6;
+}
+
+
+
+/* POPUP DETAIL & EDIT */
+
+.popup{
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,.65);
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+
+
+.popup-box{
+
+    width:100%;
+
+    max-width:400px;
+
+    background:#111827;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    box-shadow:0 15px 40px black;
+
+}
+
+
+
+.popup-box h2{
+
+    margin-top:0;
+
+    color:#60a5fa;
+
+}
+
+
+
+.popup-box p{
+
+    background:#1e293b;
+
+    padding:12px;
+
+    border-radius:10px;
+
+}
+
+
+
+.popup-box input,
+.popup-box textarea{
+
+    background:#f8fafc;
+
+    color:#111;
+
+}
+
+
+
+.popup-box button{
+
+    width:100%;
+
+    background:#2563eb;
+
+    margin-top:10px;
+
+}
+
+
+
+@media(max-width:500px){
+
+    .action{
+
+        flex-wrap:wrap;
+
+    }
+
+
+    .action button{
+
+        width:48%;
+
+    }
+
+
+    h1{
+
+        font-size:25px;
+
+    }
+
 }
