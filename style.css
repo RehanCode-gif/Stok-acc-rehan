@@ -5,10 +5,10 @@
 
 body {
     margin: 0;
+    padding: 20px;
     min-height: 100vh;
     background: linear-gradient(135deg, #111827, #2563eb);
     color: white;
-    padding: 20px;
 }
 
 .container {
@@ -18,6 +18,7 @@ body {
 
 h1 {
     text-align: center;
+    font-size: 30px;
 }
 
 .subtitle {
@@ -25,12 +26,13 @@ h1 {
     color: #d1d5db;
 }
 
+
 .form-box {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.12);
     padding: 20px;
     border-radius: 15px;
-    backdrop-filter: blur(10px);
 }
+
 
 input,
 textarea {
@@ -42,6 +44,7 @@ textarea {
     outline: none;
 }
 
+
 textarea {
     height: 90px;
 }
@@ -52,22 +55,23 @@ button {
     padding: 12px;
     border-radius: 10px;
     color: white;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
 }
 
 
-/* tombol tambah */
+/* Tombol Tambah */
 .form-box button {
     width: 100%;
     background: #22c55e;
 }
 
 
-/* kartu akun */
+
+/* Card akun */
 .card {
     background: rgba(255,255,255,0.12);
-    padding: 15px;
+    padding: 18px;
     margin-top: 15px;
     border-radius: 15px;
 }
@@ -85,33 +89,33 @@ button {
 }
 
 
+/* SEMUA TOMBOL AKSI */
 .action button {
     flex: 1;
     color: white !important;
 }
 
 
-/* warna tombol */
-.action .detail {
-    background: #3b82f6 !important;
+/* WARNA TOMBOL */
+.action button.detail {
+    background-color: #2563eb !important;
 }
 
-.action .copy {
-    background: #8b5cf6 !important;
+.action button.copy {
+    background-color: #7c3aed !important;
 }
 
-.action .edit {
-    background: #f59e0b !important;
+.action button.edit {
+    background-color: #f59e0b !important;
 }
 
-.action .delete {
-    background: #ef4444 !important;
+.action button.delete {
+    background-color: #dc2626 !important;
 }
 
 
 
-/* popup edit/detail */
-
+/* Popup */
 .popup {
     display: none;
     position: fixed;
@@ -133,6 +137,6 @@ button {
 
 .popup-box button {
     width: 100%;
-    background: #3b82f6;
+    background: #2563eb;
     margin-top: 10px;
 }
