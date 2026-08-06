@@ -53,47 +53,91 @@ function maskEmail(email){
 
 function render(){
 
-    accountList.innerHTML="";
+    accountList.innerHTML = "";
 
-    accounts.forEach((acc,index)=>{
+    accounts.forEach((acc, index)=>{
 
-        const card=document
+        const card = document
         .getElementById("cardTemplate")
         .content
         .cloneNode(true);
 
-        card.querySelector(".username").textContent=acc.username;
-        card.querySelector(".pw").textContent=maskPassword(acc.password);
-        card.querySelector(".gmail").textContent=maskEmail(acc.gmail);
-        card.querySelector(".gmailpw").textContent=maskPassword(acc.gmailPassword);
-        card.querySelector(".note").textContent=acc.note;
+        card.querySelector(".username").textContent = acc.username;
+        card.querySelector(".pw").textContent = maskPassword(acc.password);
+        card.querySelector(".gmail").textContent = maskEmail(acc.gmail);
+        card.querySelector(".gmailpw").textContent = maskPassword(acc.gmailPassword);
+        card.querySelector(".note").textContent = acc.note || "-";
+
+
+        // DETAIL
+        card.querySelector(".detailBtn")
+        .addEventListener("click", function(){
+
+            const pw = card.querySelector(".pw");
+            const mail = card.querySelector(".gmail");
+            const gpw = card.querySelector(".gmailpw");
+
+            if(this.dataset.show === "true"){
+
+                pw.textContent = maskPassword(acc.password);
+                mail.textContent = maskEmail(acc.gmail);
+                gpw.textContent = maskPassword(acc.gmailPassword);
+
+                this.dataset.show = "false";
+                this.textContent = "👁 Detail";
+
+            }else{
+
+                pw.textContent = acc.password;
+                mail.textContent = acc.gmail;
+                gpw.textContent = acc.gmailPassword;
+
+                this.dataset.show = "true";
+                this.textContent = "🔒 Tutup";
+
+            }
+
+        });
+
+
+        // COPY
+        card.querySelector(".copyBtn")
+        .addEventListener("click", ()=>{
+
+            let text =
+`Username: ${acc.username}
+Password: ${acc.password}
+Gmail: ${acc.gmail}
+Password Gmail: ${acc.gmailPassword}`;
+
+            navigator.clipboard.writeText(text);
+
+            alert("Data berhasil dicopy");
+
+        });
+
+
+        // HAPUS
+        card.querySelector(".deleteBtn")
+        .addEventListener("click", ()=>{
+
+            if(confirm("Hapus akun ini?")){
+
+                accounts.splice(index,1);
+
+                saveData();
+                render();
+
+            }
+
+        });
+
 
         accountList.appendChild(card);
 
     });
 
 }
-
-render();
-
-// ======================
-// Roblox Vault
-// Part 3B
-// Tambah Akun
-// ======================
-
-// Buka modal
-addBtn.addEventListener("click", () => {
-    modal.classList.add("active");
-
-    username.value = "";
-    password.value = "";
-    gmail.value = "";
-    gmailPassword.value = "";
-    note.value = "";
-
-    username.focus();
-});
 
 // Tutup modal
 cancelBtn.addEventListener("click", () => {
