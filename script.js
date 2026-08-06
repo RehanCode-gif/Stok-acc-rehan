@@ -99,6 +99,49 @@ function render(){
 
         });
 
+        addBtn.addEventListener("click", () => {
+    modal.classList.add("active");
+
+    username.value = "";
+    password.value = "";
+    gmail.value = "";
+    gmailPassword.value = "";
+    note.value = "";
+
+    username.focus();
+});
+
+
+cancelBtn.addEventListener("click", () => {
+    modal.classList.remove("active");
+});
+
+
+saveBtn.addEventListener("click", () => {
+
+    if (
+        username.value.trim() === "" ||
+        password.value.trim() === "" ||
+        gmail.value.trim() === ""
+    ) {
+        alert("Username, Password, dan Gmail wajib diisi!");
+        return;
+    }
+
+    accounts.push({
+        username: username.value.trim(),
+        password: password.value.trim(),
+        gmail: gmail.value.trim(),
+        gmailPassword: gmailPassword.value.trim(),
+        note: note.value.trim()
+    });
+
+    saveData();
+    render();
+
+    modal.classList.remove("active");
+
+});
 
         // COPY
         card.querySelector(".copyBtn")
