@@ -1,223 +1,218 @@
-// ======================
-// Roblox Vault
-// Part 3A
-// ======================
+let akun = JSON.parse(localStorage.getItem("akunRoblox")) || [];
 
-let accounts = JSON.parse(localStorage.getItem("accounts")) || [];
-
-const addBtn = document.getElementById("addBtn");
-const modal = document.getElementById("modal");
-const saveBtn = document.getElementById("saveBtn");
-const cancelBtn = document.getElementById("cancelBtn");
-const accountList = document.getElementById("accountList");
-
-const username = document.getElementById("username");
-const password = document.getElementById("password");
-const gmail = document.getElementById("gmail");
-const gmailPassword = document.getElementById("gmailPassword");
-const note = document.getElementById("note");
-
-function saveData(){
-    localStorage.setItem(
-        "accounts",
-        JSON.stringify(accounts)
-    );
-}
-
-function maskPassword(pw){
-    return "*".repeat(pw.length || 8);
-}
-
-function maskEmail(email){
-
-    if(!email.includes("@")) return "********";
-
-    let name = email.split("@")[0];
-    let domain = email.split("@")[1];
-
-    if(name.length <=2){
-        return name + "***@" + domain;
-    }
-
-    return (
-        name.substring(0,2)
-        +
-        "*".repeat(name.length-2)
-        +
-        "@"
-        +
-        domain
-    );
-
-}
-
-function render(){
-
-    accountList.innerHTML = "";
-
-    accounts.forEach((acc, index)=>{
-
-        const card = document
-        .getElementById("cardTemplate")
-        .content
-        .cloneNode(true);
-
-        card.querySelector(".username").textContent = acc.username;
-        card.querySelector(".pw").textContent = maskPassword(acc.password);
-        card.querySelector(".gmail").textContent = maskEmail(acc.gmail);
-        card.querySelector(".gmailpw").textContent = maskPassword(acc.gmailPassword);
-        card.querySelector(".note").textContent = acc.note || "-";
+tampilkanAkun();
 
 
-        // DETAIL
-        card.querySelector(".detailBtn")
-        .addEventListener("click", function(){
+function tambahAkun() {
 
-            const pw = card.querySelector(".pw");
-            const mail = card.querySelector(".gmail");
-            const gpw = card.querySelector(".gmailpw");
-
-            if(this.dataset.show === "true"){
-
-                pw.textContent = maskPassword(acc.password);
-                mail.textContent = maskEmail(acc.gmail);
-                gpw.textContent = maskPassword(acc.gmailPassword);
-
-                this.dataset.show = "false";
-                this.textContent = "👁 Detail";
-
-            }else{
-
-                pw.textContent = acc.password;
-                mail.textContent = acc.gmail;
-                gpw.textContent = acc.gmailPassword;
-
-                this.dataset.show = "true";
-                this.textContent = "🔒 Tutup";
-
-            }
-
-        });
-
-        addBtn.addEventListener("click", () => {
-    modal.classList.add("active");
-
-    username.value = "";
-    password.value = "";
-    gmail.value = "";
-    gmailPassword.value = "";
-    note.value = "";
-
-    username.focus();
-});
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+    let gmail = document.getElementById("gmail").value;
+    let keterangan = document.getElementById("keterangan").value;
 
 
-cancelBtn.addEventListener("click", () => {
-    modal.classList.remove("active");
-});
-
-
-saveBtn.addEventListener("click", () => {
-
-    if (
-        username.value.trim() === "" ||
-        password.value.trim() === "" ||
-        gmail.value.trim() === ""
-    ) {
-        alert("Username, Password, dan Gmail wajib diisi!");
+    if(username == "" || password == "") {
+        alert("Username dan Password Roblox wajib diisi!");
         return;
     }
 
-    accounts.push({
-        username: username.value.trim(),
-        password: password.value.trim(),
-        gmail: gmail.value.trim(),
-        gmailPassword: gmailPassword.value.trim(),
-        note: note.value.trim()
-    });
 
-    saveData();
-    render();
-
-    modal.classList.remove("active");
-
-});
-
-        // COPY
-        card.querySelector(".copyBtn")
-        .addEventListener("click", ()=>{
-
-            let text =
-`Username: ${acc.username}
-Password: ${acc.password}
-Gmail: ${acc.gmail}
-Password Gmail: ${acc.gmailPassword}`;
-
-            navigator.clipboard.writeText(text);
-
-            alert("Data berhasil dicopy");
-
-        });
+    let data = {
+        username: username,
+        password: password,
+        gmail: gmail,
+        keterangan: keterangan
+    };
 
 
-        // HAPUS
-        card.querySelector(".deleteBtn")
-        .addEventListener("click", ()=>{
+    akun.push(data);
 
-            if(confirm("Hapus akun ini?")){
-
-                accounts.splice(index,1);
-
-                saveData();
-                render();
-
-            }
-
-        });
+    localStorage.setItem("akunRoblox", JSON.stringify(akun));
 
 
-        accountList.appendChild(card);
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("gmail").value = "";
+    document.getElementById("keterangan").value = "";
+
+
+    tampilkanAkun();
+}
+
+
+
+function sensorGmail(gmail){
+
+    if(!gmail.includes("@")){
+        return gmail;
+    }
+
+    let bagian = gmail.split("@");
+
+    let nama = bagian[0];
+
+    if(nama.length <= 2){
+        return nama + "*****@" + bagian[1];
+    }
+
+    return nama.substring(0,2) + "*****@" + bagian[1];
+
+}
+
+
+
+function sensorPassword(){
+
+    return "********";
+}
+
+
+
+function tampilkanAkun(){
+
+    let list = document.getElementById("listAkun");
+
+    list.innerHTML = "";
+
+
+    akun.forEach((item,index)=>{
+
+
+        list.innerHTML += `
+
+        <div class="card">
+
+            <h3>🎮 ${item.username}</h3>
+
+            <div class="info">
+
+            <p>Password : ********</p>
+
+            <p>Gmail : ${sensorGmail(item.gmail)}</p>
+
+            <p>Keterangan : ${item.keterangan}</p>
+
+            </div>
+
+
+            <div class="action">
+
+            <button class="detail" onclick="detailAkun(${index})">
+            Detail
+            </button>
+
+
+            <button class="copy" onclick="copyAkun(${index})">
+            Copy
+            </button>
+
+
+            <button class="edit" onclick="editAkun(${index})">
+            Edit
+            </button>
+
+
+            <button class="delete" onclick="hapusAkun(${index})">
+            Hapus
+            </button>
+
+            </div>
+
+        </div>
+
+        `;
+
 
     });
 
 }
 
-// Tutup modal
-cancelBtn.addEventListener("click", () => {
-    modal.classList.remove("active");
-});
 
-// Klik di luar modal untuk menutup
-modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-        modal.classList.remove("active");
+
+
+function detailAkun(index){
+
+    let item = akun[index];
+
+
+    alert(
+`Username : ${item.username}
+
+Password : ${item.password}
+
+Gmail : ${item.gmail}
+
+Keterangan : ${item.keterangan}`
+    );
+
+}
+
+
+
+
+function copyAkun(index){
+
+    let item = akun[index];
+
+
+    navigator.clipboard.writeText(
+`Username : ${item.username}
+Password : ${item.password}
+Gmail : ${item.gmail}`
+    );
+
+
+    alert("Data berhasil dicopy!");
+
+}
+
+
+
+
+function editAkun(index){
+
+    let item = akun[index];
+
+
+    let username = prompt("Username Roblox:", item.username);
+    let password = prompt("Password Roblox:", item.password);
+    let gmail = prompt("Gmail:", item.gmail);
+    let ket = prompt("Keterangan:", item.keterangan);
+
+
+    if(username){
+
+        akun[index] = {
+
+            username: username,
+            password: password,
+            gmail: gmail,
+            keterangan: ket
+
+        };
+
+
+        localStorage.setItem("akunRoblox", JSON.stringify(akun));
+
+        tampilkanAkun();
+
     }
-});
 
-// Simpan akun
-saveBtn.addEventListener("click", () => {
+}
 
-    if (
-        username.value.trim() === "" ||
-        password.value.trim() === "" ||
-        gmail.value.trim() === ""
-    ) {
-        alert("Username, Password, dan Gmail wajib diisi!");
-        return;
+
+
+
+function hapusAkun(index){
+
+    if(confirm("Hapus akun ini?")){
+
+        akun.splice(index,1);
+
+        localStorage.setItem("akunRoblox", JSON.stringify(akun));
+
+        tampilkanAkun();
+
     }
 
-    accounts.push({
-        username: username.value.trim(),
-        password: password.value.trim(),
-        gmail: gmail.value.trim(),
-        gmailPassword: gmailPassword.value.trim(),
-        note: note.value.trim()
-    });
-
-    saveData();
-    render();
-
-    modal.classList.remove("active");
-
-    alert("Akun berhasil disimpan!");
-});
+}
