@@ -3,176 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Vault</title>
+    <title>Roblox Account Storage</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <div class="container">
 
-    <header>
-        <h1>🎮 Roblox Vault</h1>
-        <p>Simpan akun Roblox dengan aman</p>
-    </header>
+    <h1>🎮 Roblox Account Storage</h1>
+    <p class="subtitle">Simpan akun Roblox kamu dengan aman</p>
 
-    <div class="top-box">
+    <div class="form-box">
 
-        <input
-            type="text"
-            id="search"
-            placeholder="Cari Username Roblox..."
-        >
+        <input type="text" id="username" placeholder="Username Roblox (contoh: rayhan)">
 
-        <button id="addBtn">
-            + Tambah Akun
-        </button>
+        <input type="password" id="password" placeholder="Password Roblox">
+
+        <input type="email" id="gmail" placeholder="Gmail (contoh: ra*****@gmail.com)">
+
+        <textarea id="keterangan" placeholder="Keterangan akun"></textarea>
+
+        <button onclick="tambahAkun()">Tambah Akun</button>
 
     </div>
 
-    <div class="account-list" id="accountList">
 
-        <!-- Data akun muncul di sini -->
+    <h2>Daftar Akun</h2>
 
-    </div>
-
-</div>
-
-
-<!-- ========================= -->
-<!-- Modal Tambah/Edit Akun -->
-<!-- ========================= -->
-
-<div class="modal" id="modal">
-
-<div class="modal-content">
-
-<h2 id="modalTitle">
-Tambah Akun
-</h2>
-
-<input
-type="text"
-id="username"
-placeholder="Username Roblox"
->
-
-<input
-type="password"
-id="password"
-placeholder="Password Roblox"
->
-
-<input
-type="email"
-id="gmail"
-placeholder="Gmail"
->
-
-<input
-type="password"
-id="gmailPassword"
-placeholder="Password Gmail"
->
-
-<textarea
-id="note"
-placeholder="Keterangan"
-></textarea>
-
-<div class="modal-buttons">
-
-<button id="saveBtn">
-💾 Simpan
-</button>
-
-<button id="cancelBtn">
-❌ Batal
-</button>
+    <div id="listAkun"></div>
 
 </div>
-
-</div>
-
-</div>
-
-
-<!-- ========================= -->
-<!-- Template Card -->
-<!-- ========================= -->
-
-<template id="cardTemplate">
-
-<div class="card">
-
-<div class="card-header">
-
-<h3 class="username">
-Username
-</h3>
-
-</div>
-
-<div class="info">
-
-<p>
-<strong>Password Roblox</strong><br>
-<span class="pw">
-********
-</span>
-</p>
-
-<p>
-<strong>Gmail</strong><br>
-<span class="gmail">
-ra*********@gmail.com
-</span>
-</p>
-
-<p>
-<strong>Password Gmail</strong><br>
-<span class="gmailpw">
-********
-</span>
-</p>
-
-<p>
-<strong>Keterangan</strong><br>
-<span class="note">
--
-</span>
-</p>
-
-</div>
-
-<div class="buttons">
-
-<button class="detailBtn">
-👁 Detail
-</button>
-
-<button class="copyBtn">
-📋 Copy
-</button>
-
-<button class="editBtn">
-✏ Edit
-</button>
-
-<button class="deleteBtn">
-🗑 Hapus
-</button>
-
-</div>
-
-</div>
-
-</template>
 
 
 <script src="script.js"></script>
