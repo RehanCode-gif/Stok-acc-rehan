@@ -18,7 +18,6 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 28px;
 }
 
 .subtitle {
@@ -31,7 +30,6 @@ h1 {
     padding: 20px;
     border-radius: 15px;
     backdrop-filter: blur(10px);
-    margin-top: 20px;
 }
 
 input,
@@ -39,17 +37,15 @@ textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 12px;
+    border-radius: 10px;
     border: none;
     outline: none;
-    border-radius: 10px;
-    background: white;
-    color: black;
 }
 
 textarea {
     height: 90px;
-    resize: none;
 }
+
 
 button {
     border: none;
@@ -57,14 +53,18 @@ button {
     border-radius: 10px;
     color: white;
     cursor: pointer;
-    font-size: 14px;
+    font-weight: bold;
 }
 
+
+/* tombol tambah */
 .form-box button {
     width: 100%;
     background: #22c55e;
 }
 
+
+/* kartu akun */
 .card {
     background: rgba(255,255,255,0.12);
     padding: 15px;
@@ -72,68 +72,67 @@ button {
     border-radius: 15px;
 }
 
+
 .card h3 {
-    margin-top: 0;
+    color: #60a5fa;
 }
+
 
 .action {
     display: flex;
     gap: 8px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
+
 
 .action button {
     flex: 1;
+    color: white !important;
 }
 
-/* warna tombol awal */
-.detail {
-    background: #3b82f6;
+
+/* warna tombol */
+.action .detail {
+    background: #3b82f6 !important;
 }
 
-.edit {
-    background: #f59e0b;
+.action .copy {
+    background: #8b5cf6 !important;
 }
 
-.delete {
-    background: #ef4444;
+.action .edit {
+    background: #f59e0b !important;
 }
 
-.copy {
-    background: #8b5cf6;
+.action .delete {
+    background: #ef4444 !important;
 }
+
 
 
 /* popup edit/detail */
+
 .popup {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,.6);
     justify-content: center;
     align-items: center;
-    padding: 20px;
 }
+
 
 .popup-box {
     background: #1f2937;
-    width: 100%;
+    width: 90%;
     max-width: 400px;
     padding: 20px;
     border-radius: 15px;
 }
 
-.popup-box h2 {
-    margin-top: 0;
-}
 
 .popup-box button {
     width: 100%;
     background: #3b82f6;
     margin-top: 10px;
-}
-
-.popup-box input,
-.popup-box textarea {
-    margin-bottom: 10px;
 }
