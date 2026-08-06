@@ -5,10 +5,10 @@
 
 body {
     margin: 0;
-    padding: 20px;
     min-height: 100vh;
     background: linear-gradient(135deg, #111827, #2563eb);
     color: white;
+    padding: 20px;
 }
 
 .container {
@@ -18,7 +18,7 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .subtitle {
@@ -28,9 +28,11 @@ h1 {
 
 
 .form-box {
-    background: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.1);
     padding: 20px;
     border-radius: 15px;
+    backdrop-filter: blur(10px);
+    margin-top: 20px;
 }
 
 
@@ -39,104 +41,86 @@ textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 12px;
-    border-radius: 10px;
     border: none;
     outline: none;
+    border-radius: 10px;
+    background: white;
+    color: black;
 }
 
 
 textarea {
     height: 90px;
+    resize: none;
 }
 
 
 button {
-    border: none;
+    width: 100%;
     padding: 12px;
+    border: none;
     border-radius: 10px;
+    background: #22c55e;
     color: white;
-    font-weight: bold;
+    font-size: 16px;
     cursor: pointer;
 }
 
 
-/* Tombol Tambah */
-.form-box button {
-    width: 100%;
-    background: #22c55e;
+button:hover {
+    opacity: 0.8;
 }
 
 
-
-/* Card akun */
 .card {
     background: rgba(255,255,255,0.12);
-    padding: 18px;
+    padding: 15px;
     margin-top: 15px;
     border-radius: 15px;
 }
 
 
 .card h3 {
-    color: #60a5fa;
+    margin: 0 0 10px;
+}
+
+
+.info {
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
 
 .action {
     display: flex;
     gap: 8px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 
-/* SEMUA TOMBOL AKSI */
 .action button {
     flex: 1;
-    color: white !important;
+    font-size: 14px;
 }
 
 
-/* WARNA TOMBOL */
-.action button.detail {
-    background-color: #2563eb !important;
-}
-
-.action button.copy {
-    background-color: #7c3aed !important;
-}
-
-.action button.edit {
-    background-color: #f59e0b !important;
-}
-
-.action button.delete {
-    background-color: #dc2626 !important;
+.detail {
+    background: #3b82f6;
 }
 
 
-
-/* Popup */
-.popup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.6);
-    justify-content: center;
-    align-items: center;
+.edit {
+    background: #f59e0b;
 }
 
 
-.popup-box {
-    background: #1f2937;
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
-    border-radius: 15px;
+.delete {
+    background: #ef4444;
 }
 
 
-.popup-box button {
-    width: 100%;
-    background: #2563eb;
-    margin-top: 10px;
+.copy {
+    background: #8b5cf6;
 }
