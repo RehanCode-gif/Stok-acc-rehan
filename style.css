@@ -1,443 +1,126 @@
-/* ===========================
-   Roblox Vault
-   style.css
-=========================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-body{
-    background:linear-gradient(135deg,#0f172a,#1e293b,#111827);
-    min-height:100vh;
-    color:#fff;
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #111827, #2563eb);
+    color: white;
+    padding: 20px;
 }
 
-.container{
-    width:95%;
-    max-width:1200px;
-    margin:auto;
-    padding:30px 15px;
+.container {
+    max-width: 600px;
+    margin: auto;
 }
 
-header{
-    text-align:center;
-    margin-bottom:30px;
+h1 {
+    text-align: center;
+    font-size: 28px;
 }
 
-header h1{
-    font-size:34px;
-    font-weight:700;
+.subtitle {
+    text-align: center;
+    color: #d1d5db;
 }
 
-header p{
-    margin-top:8px;
-    color:#cbd5e1;
+
+.form-box {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    margin-top: 20px;
 }
 
-.top-box{
-    display:flex;
-    gap:15px;
-    margin-bottom:25px;
-    flex-wrap:wrap;
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background: white;
+    color: black;
 }
 
-#search{
-    flex:1;
-    min-width:240px;
-    padding:14px 18px;
-    border:none;
-    border-radius:14px;
-    outline:none;
-    background:#1e293b;
-    color:white;
-    font-size:15px;
+
+textarea {
+    height: 90px;
+    resize: none;
 }
 
-#search::placeholder{
-    color:#94a3b8;
+
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #22c55e;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-#addBtn{
-    border:none;
-    padding:14px 24px;
-    border-radius:14px;
-    cursor:pointer;
-    font-size:15px;
-    font-weight:600;
-    color:white;
-    background:linear-gradient(45deg,#3b82f6,#2563eb);
-    transition:.25s;
+
+button:hover {
+    opacity: 0.8;
 }
 
-#addBtn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 18px rgba(37,99,235,.4);
+
+.card {
+    background: rgba(255,255,255,0.12);
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 15px;
 }
 
-.account-list{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-    gap:20px;
+
+.card h3 {
+    margin: 0 0 10px;
 }
 
-/* ===========================
-   CARD AKUN
-=========================== */
 
-.card{
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:18px;
-    padding:20px;
-    transition:.3s ease;
-    animation:fadeUp .35s ease;
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
+.info {
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 18px 40px rgba(59,130,246,.25);
-    border-color:rgba(59,130,246,.35);
+
+.action {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
 }
 
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
+
+.action button {
+    flex: 1;
+    font-size: 14px;
 }
 
-.username{
-    font-size:20px;
-    font-weight:700;
-    color:#fff;
-    word-break:break-word;
+
+.detail {
+    background: #3b82f6;
 }
 
-.info p{
-    margin-bottom:14px;
-    line-height:1.6;
+
+.edit {
+    background: #f59e0b;
 }
 
-.info strong{
-    color:#60a5fa;
-    display:block;
-    margin-bottom:4px;
-    font-size:14px;
+
+.delete {
+    background: #ef4444;
 }
 
-.info span{
-    display:block;
-    background:rgba(255,255,255,.05);
-    padding:10px;
-    border-radius:10px;
-    color:#e5e7eb;
-    word-break:break-word;
-}
 
-.buttons{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    margin-top:20px;
-}
-
-.buttons button{
-    border:none;
-    border-radius:12px;
-    padding:11px;
-    cursor:pointer;
-    color:#fff;
-    font-weight:600;
-    transition:.25s;
-}
-
-.detailBtn{
-    background:#2563eb;
-}
-
-.copyBtn{
-    background:#059669;
-}
-
-.editBtn{
-    background:#d97706;
-}
-
-.deleteBtn{
-    background:#dc2626;
-}
-
-.buttons button:hover{
-    transform:translateY(-2px) scale(1.02);
-    filter:brightness(1.08);
-}
-
-.buttons button:active{
-    transform:scale(.97);
-}
-
-@keyframes fadeUp{
-
-    from{
-        opacity:0;
-        transform:translateY(18px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-
-                                }
-
-/* ===========================
-   MODAL TAMBAH / EDIT
-=========================== */
-
-.modal{
-    position:fixed;
-    inset:0;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    background:rgba(0,0,0,.65);
-    backdrop-filter:blur(6px);
-    -webkit-backdrop-filter:blur(6px);
-    z-index:999;
-    padding:20px;
-}
-
-.modal.active{
-    display:flex;
-    animation:fadeModal .25s ease;
-}
-
-.modal-content{
-    width:100%;
-    max-width:500px;
-    background:rgba(15,23,42,.96);
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:20px;
-    padding:25px;
-    box-shadow:0 20px 50px rgba(0,0,0,.4);
-    animation:popup .25s ease;
-}
-
-.modal-content h2{
-    margin-bottom:20px;
-    text-align:center;
-    font-size:24px;
-}
-
-.modal-content input,
-.modal-content textarea{
-    width:100%;
-    margin-bottom:15px;
-    padding:14px;
-    border:none;
-    outline:none;
-    border-radius:12px;
-    background:#1e293b;
-    color:#fff;
-    font-size:15px;
-}
-
-.modal-content textarea{
-    resize:vertical;
-    min-height:100px;
-}
-
-.modal-content input::placeholder,
-.modal-content textarea::placeholder{
-    color:#94a3b8;
-}
-
-.modal-buttons{
-    display:flex;
-    gap:12px;
-    margin-top:10px;
-}
-
-.modal-buttons button{
-    flex:1;
-    padding:14px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:600;
-    color:#fff;
-    transition:.25s;
-}
-
-#saveBtn{
-    background:#2563eb;
-}
-
-#cancelBtn{
-    background:#dc2626;
-}
-
-#saveBtn:hover,
-#cancelBtn:hover{
-    transform:translateY(-2px);
-    filter:brightness(1.08);
-}
-
-@keyframes popup{
-    from{
-        opacity:0;
-        transform:scale(.92);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-@keyframes fadeModal{
-    from{
-        opacity:0;
-    }
-    to{
-        opacity:1;
-    }
-  }
-
-/* ===========================
-   RESPONSIVE MOBILE
-=========================== */
-
-@media (max-width:768px){
-
-    .container{
-        width:100%;
-        padding:20px 15px;
-    }
-
-    header h1{
-        font-size:28px;
-    }
-
-    header p{
-        font-size:14px;
-    }
-
-    .top-box{
-        flex-direction:column;
-        gap:12px;
-    }
-
-    #search{
-        width:100%;
-        font-size:15px;
-    }
-
-    #addBtn{
-        width:100%;
-        font-size:15px;
-        padding:15px;
-    }
-
-    .account-list{
-        grid-template-columns:1fr;
-    }
-
-    .card{
-        padding:18px;
-        border-radius:16px;
-    }
-
-    .username{
-        font-size:18px;
-    }
-
-    .info p{
-        font-size:14px;
-    }
-
-    .buttons{
-        grid-template-columns:1fr;
-    }
-
-    .buttons button{
-        width:100%;
-        padding:13px;
-        font-size:15px;
-    }
-
-    .modal-content{
-        width:100%;
-        max-width:100%;
-        border-radius:18px;
-        padding:20px;
-    }
-
-    .modal-content h2{
-        font-size:22px;
-    }
-
-    .modal-content input,
-    .modal-content textarea{
-        font-size:15px;
-    }
-
-    .modal-buttons{
-        flex-direction:column;
-    }
-
-    .modal-buttons button{
-        width:100%;
-    }
-
-}
-
-@media (max-width:480px){
-
-    header h1{
-        font-size:24px;
-    }
-
-    header p{
-        font-size:13px;
-    }
-
-    .card{
-        padding:16px;
-    }
-
-    .info span{
-        font-size:13px;
-    }
-
-    .buttons button{
-        font-size:14px;
-        padding:12px;
-    }
-
-    .modal-content{
-        padding:18px;
-    }
-
-}
-
-/* Scrollbar */
-
-::-webkit-scrollbar{
-    width:8px;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#3b82f6;
-    border-radius:10px;
-}
-
-::-webkit-scrollbar-track{
-    background:#0f172a;
+.copy {
+    background: #8b5cf6;
 }
