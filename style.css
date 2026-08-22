@@ -1,527 +1,315 @@
-const PASSWORD_WEBSITE = "201230rw";
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-let akun = JSON.parse(localStorage.getItem("akunRoblox")) || [];
-
-
-// ==========================
-// LOGIN
-// ==========================
-
-function buatLogin() {
-
-    const login = document.createElement("div");
-
-    login.id = "loginScreen";
-
-    login.innerHTML = `
-        <div class="loginBox">
-
-            <div class="loginIcon">🔐</div>
-
-            <h2>Roblox Vault</h2>
-
-            <p>Masukkan password untuk masuk</p>
-
-            <input
-                type="password"
-                id="loginPassword"
-                placeholder="Password"
-            >
-
-            <button id="loginButton">
-                Masuk
-            </button>
-
-            <div id="loginError"></div>
-
-        </div>
-    `;
-
-    document.body.prepend(login);
-
-
-    const style = document.createElement("style");
-
-    style.textContent = `
-
-        #loginScreen {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            padding: 20px;
-
-            background:
-            linear-gradient(
-                135deg,
-                #111827,
-                #2563eb
-            );
-        }
-
-        .loginBox {
-            width: 100%;
-            max-width: 380px;
-
-            padding: 30px;
-
-            border-radius: 20px;
-
-            text-align: center;
-
-            background: rgba(255,255,255,0.12);
-
-            backdrop-filter: blur(15px);
-
-            color: white;
-
-            box-shadow:
-            0 15px 40px rgba(0,0,0,.4);
-        }
-
-        .loginIcon {
-            font-size: 45px;
-        }
-
-        .loginBox h2 {
-            margin: 10px 0;
-        }
-
-        .loginBox p {
-            color: #d1d5db;
-        }
-
-        #loginPassword {
-            width: 100%;
-
-            padding: 13px;
-
-            margin-top: 10px;
-
-            border: none;
-
-            border-radius: 10px;
-
-            outline: none;
-
-            font-size: 15px;
-
-            color: black;
-        }
-
-        #loginButton {
-            width: 100%;
-
-            padding: 13px;
-
-            margin-top: 12px;
-
-            border: none;
-
-            border-radius: 10px;
-
-            background: #22c55e;
-
-            color: white;
-
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        #loginError {
-            min-height: 22px;
-
-            margin-top: 10px;
-
-            color: #ef4444;
-
-            font-weight: bold;
-        }
-
-    `;
-
-    document.head.appendChild(style);
-
-
-    document
-        .getElementById("loginButton")
-        .addEventListener("click", cekPassword);
-
-
-    document
-        .getElementById("loginPassword")
-        .addEventListener("keydown", function(e) {
-
-            if (e.key === "Enter") {
-                cekPassword();
-            }
-
-        });
-
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #111827, #2563eb);
+    color: white;
 }
 
 
-function cekPassword() {
+/* =========================
+   LOGIN
+========================= */
 
-    const input =
-        document.getElementById("loginPassword");
+#loginScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
 
-    const error =
-        document.getElementById("loginError");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: linear-gradient(
+        135deg,
+        #111827,
+        #2563eb
+    );
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+}
+
+.login-icon {
+    font-size: 45px;
+}
+
+.login-box h1 {
+    margin: 10px 0;
+    font-size: 30px;
+}
+
+.login-box p {
+    color: #d1d5db;
+}
+
+#loginPassword {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 15px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 10px;
+
+    background: white;
+    color: black;
+
+    font-size: 16px;
+}
+
+#loginButton {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #22c55e;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+#loginButton:active {
+    transform: scale(0.98);
+}
+
+#loginError {
+    min-height: 24px;
+
+    margin-top: 12px;
+
+    color: #ff6b6b;
+
+    font-weight: bold;
+}
 
 
-    if (input.value === PASSWORD_WEBSITE) {
+/* =========================
+   WEBSITE UTAMA
+========================= */
 
-        document
-            .getElementById("loginScreen")
-            .remove();
+.container {
+    max-width: 600px;
 
-        document
-            .getElementById("loginPassword")
-            ?.remove();
+    margin: auto;
 
-    } else {
+    padding: 20px;
+}
 
-        error.textContent = "❌ Password salah!";
+.container h1 {
+    text-align: center;
+    font-size: 28px;
+}
 
-        input.value = "";
+.subtitle {
+    text-align: center;
+    color: #d1d5db;
+}
 
-        input.focus();
 
+/* =========================
+   FORM
+========================= */
+
+.form-box {
+    background: rgba(255,255,255,0.1);
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    backdrop-filter: blur(10px);
+
+    margin-top: 20px;
+}
+
+input,
+textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 12px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 10px;
+
+    background: white;
+    color: black;
+
+    font-size: 15px;
+}
+
+textarea {
+    height: 90px;
+
+    resize: none;
+}
+
+#addButton {
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #22c55e;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   CARD AKUN
+========================= */
+
+.card {
+    background: rgba(255,255,255,0.12);
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+    border-radius: 15px;
+
+    backdrop-filter: blur(8px);
+}
+
+.card h3 {
+    margin: 0 0 10px;
+
+    color: #93c5fd;
+}
+
+.info {
+    background: rgba(0,0,0,0.2);
+
+    padding: 10px;
+
+    border-radius: 10px;
+}
+
+.info p {
+    margin: 7px 0;
+
+    word-break: break-word;
+}
+
+
+/* =========================
+   TOMBOL AKSI
+========================= */
+
+.action {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 12px;
+}
+
+.action button {
+    flex: 1;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.detail {
+    background: #3b82f6 !important;
+}
+
+.copy {
+    background: #8b5cf6 !important;
+}
+
+.edit {
+    background: #f59e0b !important;
+}
+
+.delete {
+    background: #ef4444 !important;
+}
+
+.action button:hover,
+#addButton:hover,
+#loginButton:hover {
+    opacity: 0.85;
+}
+
+
+/* =========================
+   HP
+========================= */
+
+@media (max-width: 500px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    .container h1 {
+        font-size: 25px;
+    }
+
+    .action {
+        flex-wrap: wrap;
+    }
+
+    .action button {
+        min-width: calc(50% - 4px);
     }
 
 }
-
-
-// ==========================
-// SIMPAN DATA
-// ==========================
-
-function simpanData() {
-
-    localStorage.setItem(
-        "akunRoblox",
-        JSON.stringify(akun)
-    );
-
-}
-
-
-// ==========================
-// SENSOR GMAIL
-// ==========================
-
-function sensorGmail(gmail) {
-
-    if (!gmail) return "-";
-
-    if (!gmail.includes("@")) {
-        return gmail;
-    }
-
-    const bagian = gmail.split("@");
-
-    const nama = bagian[0];
-
-    const domain = bagian[1];
-
-    if (nama.length <= 2) {
-        return nama + "*****@" + domain;
-    }
-
-    return (
-        nama.substring(0, 2) +
-        "*****@" +
-        domain
-    );
-
-}
-
-
-// ==========================
-// ADD ACCOUNT
-// ==========================
-
-function tambahAkun() {
-
-    const username =
-        document.getElementById("username")
-        .value
-        .trim();
-
-    const password =
-        document.getElementById("password")
-        .value
-        .trim();
-
-    const gmail =
-        document.getElementById("gmail")
-        .value
-        .trim();
-
-    const keterangan =
-        document.getElementById("keterangan")
-        .value
-        .trim();
-
-
-    if (username === "") {
-
-        alert("Username Roblox wajib diisi!");
-
-        return;
-    }
-
-
-    if (password === "") {
-
-        alert("Password Roblox wajib diisi!");
-
-        return;
-    }
-
-
-    akun.push({
-
-        username: username,
-
-        password: password,
-
-        gmail: gmail,
-
-        keterangan: keterangan
-
-    });
-
-
-    simpanData();
-
-
-    document.getElementById("username").value = "";
-
-    document.getElementById("password").value = "";
-
-    document.getElementById("gmail").value = "";
-
-    document.getElementById("keterangan").value = "";
-
-
-    tampilkanAkun();
-
-}
-
-
-// ==========================
-// TAMPILKAN AKUN
-// ==========================
-
-function tampilkanAkun() {
-
-    const list =
-        document.getElementById("listAkun");
-
-    if (!list) return;
-
-
-    list.innerHTML = "";
-
-
-    akun.forEach((item, index) => {
-
-        list.innerHTML += `
-
-        <div class="card">
-
-            <h3>🎮 ${item.username}</h3>
-
-            <div class="info">
-
-                <p>
-                    Password : ********
-                </p>
-
-                <p>
-                    Gmail : ${sensorGmail(item.gmail)}
-                </p>
-
-                <p>
-                    Keterangan :
-                    ${item.keterangan || "-"}
-                </p>
-
-            </div>
-
-            <div class="action">
-
-                <button
-                    class="detail"
-                    onclick="detailAkun(${index})">
-                    Detail
-                </button>
-
-                <button
-                    class="copy"
-                    onclick="copyAkun(${index})">
-                    Copy
-                </button>
-
-                <button
-                    class="edit"
-                    onclick="editAkun(${index})">
-                    Edit
-                </button>
-
-                <button
-                    class="delete"
-                    onclick="hapusAkun(${index})">
-                    Hapus
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-
-    });
-
-}
-
-
-// ==========================
-// DETAIL
-// ==========================
-
-function detailAkun(index) {
-
-    const item = akun[index];
-
-    alert(
-`Username : ${item.username}
-
-Password : ${item.password}
-
-Gmail : ${item.gmail}
-
-Keterangan : ${item.keterangan || "-"}`
-    );
-
-}
-
-
-// ==========================
-// COPY
-// ==========================
-
-function copyAkun(index) {
-
-    const item = akun[index];
-
-    const text =
-`Username : ${item.username}
-Password : ${item.password}
-Gmail : ${item.gmail}`;
-
-
-    navigator.clipboard
-        .writeText(text)
-        .then(() => {
-
-            alert("Data berhasil dicopy!");
-
-        });
-
-}
-
-
-// ==========================
-// EDIT
-// ==========================
-
-function editAkun(index) {
-
-    const item = akun[index];
-
-
-    const username = prompt(
-        "Username Roblox:",
-        item.username
-    );
-
-    if (username === null) return;
-
-
-    const password = prompt(
-        "Password Roblox:",
-        item.password
-    );
-
-    if (password === null) return;
-
-
-    const gmail = prompt(
-        "Gmail:",
-        item.gmail
-    );
-
-    if (gmail === null) return;
-
-
-    const keterangan = prompt(
-        "Keterangan:",
-        item.keterangan
-    );
-
-    if (keterangan === null) return;
-
-
-    akun[index] = {
-
-        username,
-        password,
-        gmail,
-        keterangan
-
-    };
-
-
-    simpanData();
-
-    tampilkanAkun();
-
-}
-
-
-// ==========================
-// HAPUS
-// ==========================
-
-function hapusAkun(index) {
-
-    if (
-        confirm("Yakin ingin menghapus akun ini?")
-    ) {
-
-        akun.splice(index, 1);
-
-        simpanData();
-
-        tampilkanAkun();
-
-    }
-
-}
-
-
-// ==========================
-// MULAI
-// ==========================
-
-tampilkanAkun();
-
-buatLogin();
