@@ -164,3 +164,16 @@ function hapusAkun(index){
 
 
 tampilkanAkun();
+
+function login() {
+    const password = document.getElementById("loginPassword").value;
+    const error = document.getElementById("loginError");
+
+    if (password === "201230rw") {
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("loginPassword").value = "";
+    } else {
+        error.textContent = "Password salah!";
+        document.getElementById("loginPassword").value = "";
+    }
+}
