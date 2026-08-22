@@ -126,3 +126,39 @@ textarea {
 .action button:hover {
     opacity: 0.8;
 }
+
+#loginScreen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #111827, #2563eb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 380px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(15px);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.login-box input {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.login-box button {
+    width: 100%;
+    background: #22c55e;
+}
+
+#loginError {
+    color: #f87171;
+    min-height: 20px;
+}
